@@ -7,7 +7,7 @@ const EventWatcher = ({ className, eventName }) => {
   const [flashAnimateClassName, setFlashAnimateClassName] = useState('');
   const REMOVE_CLASSNAME_TIME = 200;
 
-  function eventHandler(e) {
+  function eventHandler() {
     setNumberOfListens(numberOfListens + 1);
   }
 
@@ -20,10 +20,7 @@ const EventWatcher = ({ className, eventName }) => {
     if (!numberOfListens) return;
 
     setFlashAnimateClassName(style.flashAnimation);
-
-    setTimeout(() => {
-      setFlashAnimateClassName('');
-    }, REMOVE_CLASSNAME_TIME);
+    setTimeout(() => setFlashAnimateClassName(''), REMOVE_CLASSNAME_TIME);
   }, [numberOfListens]);
 
   return (
