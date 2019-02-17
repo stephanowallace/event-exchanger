@@ -16,3 +16,16 @@
   margin: 0;
   padding: 0 0 8px;
 }
+
+.flashAnimation {
+  animation: flashBG 0.2s linear;
+}
+
+@keyframes flashBG {
+  from {
+    background: #0091e3;
+  }
+  to {
+    background: transparent;
+  }
+}
