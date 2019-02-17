@@ -16,8 +16,8 @@ const EventWatcher = ({ className, eventName }) => {
 
   return (
     <div className={`${style.container} ${className}`}>
-      <p className={style.name}>{eventName}</p>
-      <p className={style.counter}>Listened {numberOfListens} times</p>
+      <p data-test="eventWatcherName" className={style.name}>{eventName}</p>
+      <p data-test="eventWatcherListens" className={style.counter}>Listened {numberOfListens} times</p>
     </div>
   );
 };
