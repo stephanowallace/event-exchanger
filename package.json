@@ -1,0 +1,11 @@
+{
+  "name": "event-exchanger",
+  "version": "1.0.0",
+  "description": "application that sends and receives custom events",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stéphano Wallace <stephanowallace@gmail.com>",
+  "license": "ISC"
+}
