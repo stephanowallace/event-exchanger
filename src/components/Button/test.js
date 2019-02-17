@@ -14,4 +14,9 @@ describe('Button', () => {
     component.simulate('click');
     expect(onClickMock).toHaveBeenCalled();
   });
+
+  it('adds custom class', () => {
+    const component = shallow(<Button className="testClass">test</Button>);
+    expect(component.find('.testClass').exists()).toBeTruthy();
+  });
 });
