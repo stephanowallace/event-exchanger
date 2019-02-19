@@ -1,22 +1,24 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, fireEvent, cleanup } from 'react-testing-library';
 import Button from '.';
 
 describe('Button', () => {
+  afterEach(cleanup);
+
   it('renders child', () => {
-    const component = shallow(<Button>test</Button>);
-    expect(component.find('[data-test="button"]').text()).toBe('test');
+    const { getByTestId } = render(<Button>test</Button>);
+    expect(getByTestId('button')).toHaveTextContent('test');
   });
 
   it('calls click event on button click', () => {
     const onClickMock = jest.fn();
-    const component = shallow(<Button onClick={onClickMock}>test</Button>);
-    component.simulate('click');
+    const { getByTestId } = render(<Button onClick={onClickMock}>test</Button>);
+    fireEvent.click(getByTestId('button'));
     expect(onClickMock).toHaveBeenCalled();
   });
 
   it('adds custom class', () => {
-    const component = shallow(<Button className="testClass">test</Button>);
-    expect(component.find('.testClass').exists()).toBeTruthy();
+    const { getByTestId } = render(<Button className="testClass">test</Button>);
+    expect(getByTestId('button')).toHaveClass('testClass');
   });
 });
