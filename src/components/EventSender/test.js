@@ -11,10 +11,13 @@ describe('EventSender', () => {
   });
 
   it('dispatches event', () => {
-    const { getByTestId } = render(<EventSender eventName="testName" />);
     const eventListenerMock = jest.fn();
+    const { getByTestId } = render(<EventSender eventName="testName" />);
+
     document.addEventListener('testName', () => eventListenerMock());
     fireEvent.click(getByTestId('button'));
+
     expect(eventListenerMock).toHaveBeenCalled();
+    document.removeEventListener('testName', () => eventListenerMock());
   });
 });
