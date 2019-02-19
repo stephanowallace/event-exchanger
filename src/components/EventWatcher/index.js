@@ -18,17 +18,16 @@ const EventWatcher = ({ className, eventName }) => {
 
   useEffect(() => {
     if (!numberOfListens) return;
-
     setFlashAnimateClassName(style.flashAnimation);
     setTimeout(() => setFlashAnimateClassName(''), REMOVE_CLASSNAME_TIME);
   }, [numberOfListens]);
 
   return (
-    <div className={`${style.container} ${flashAnimateClassName} ${className}`}>
-      <p data-test="eventWatcherName" className={style.name}>
+    <div data-testid="eventWatcher" className={`${style.container} ${flashAnimateClassName} ${className}`}>
+      <p data-testid="eventWatcherName" className={style.name}>
         {eventName}
       </p>
-      <p data-test="eventWatcherListens" className={style.counter}>
+      <p data-testid="eventWatcherListens" className={style.counter}>
         Listened {numberOfListens} times
       </p>
     </div>
