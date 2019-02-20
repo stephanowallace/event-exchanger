@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import Button from '../Button';
 
 const EventSender = ({ className, eventName }) => {
-  function handleClick() {
-    const event = new Event(eventName);
-    document.dispatchEvent(event);
-  }
+  const buttonEl = useRef(null);
+  const event = new Event(eventName, { bubbles: true });
 
-  return <Button className={className} onClick={handleClick}>{eventName}</Button>;
+  const handleClick = () => buttonEl.current.dispatchEvent(event);
+
+  return <Button ref={buttonEl} className={className} onClick={handleClick}>
+    {eventName}
+  </Button>;
 };
 
 EventSender.propTypes = {

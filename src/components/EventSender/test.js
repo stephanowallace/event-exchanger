@@ -1,15 +1,23 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, fireEvent, cleanup } from 'react-testing-library';
 import EventSender from '.';
 
 describe('EventSender', () => {
+  afterEach(cleanup);
+
   it('renders event name as button label', () => {
-    const component = shallow(<EventSender eventName="testName" />);
-    expect(component.find('Button').render().text()).toBe('testName');
+    const { getByTestId } = render(<EventSender eventName="testName" />);
+    expect(getByTestId('button')).toHaveTextContent('testName');
   });
 
-  // it('sends event', () => {
-  //   const component = shallow(<EventSender eventName="testName" />);
-  //   component.find('Button').simulate('click');
-  // });
+  it('dispatches event', () => {
+    const eventListenerMock = jest.fn();
+    const { getByTestId } = render(<EventSender eventName="testName" />);
+
+    document.addEventListener('testName', () => eventListenerMock());
+    fireEvent.click(getByTestId('button'));
+
+    expect(eventListenerMock).toHaveBeenCalled();
+    document.removeEventListener('testName', () => eventListenerMock());
+  });
 });
