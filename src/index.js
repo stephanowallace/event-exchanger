@@ -4,14 +4,8 @@ import './index.css';
 import App from './App';
 
 class EventExchanger extends HTMLElement {
-  constructor() {
-    super();
-    console.log('constructor EventExchanger ...');
-  }
-
   connectedCallback() {
-    console.log('connected EventExchanger ....');
-    ReactDOM.render(<App />, this.attachShadow({ mode: 'open' }));
+    ReactDOM.render(<App />, this);
   }
 }
 
