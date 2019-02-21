@@ -12,8 +12,8 @@ const EventWatcher = ({ className, eventName }) => {
   }
 
   useEffect(() => {
-    document.addEventListener(eventName, e => eventHandler(e));
-    return document.removeEventListener(eventName, e => eventHandler(e));
+    window.addEventListener(eventName, e => eventHandler(e));
+    return window.removeEventListener(eventName, e => eventHandler(e));
   });
 
   useEffect(() => {
