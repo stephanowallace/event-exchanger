@@ -4,13 +4,15 @@ import Button from '../Button';
 
 const EventSender = ({ className, eventName }) => {
   const buttonEl = useRef(null);
-  const event = new Event(eventName, { bubbles: true });
+  const event = new Event(eventName, { bubbles: true, composed: true });
 
-  const handleClick = () => buttonEl.current.dispatchEvent(event);
+  const handleClick = () => window.dispatchEvent(event);
 
-  return <Button ref={buttonEl} className={className} onClick={handleClick}>
-    {eventName}
-  </Button>;
+  return (
+    <Button ref={buttonEl} className={className} onClick={handleClick}>
+      {eventName}
+    </Button>
+  );
 };
 
 EventSender.propTypes = {
